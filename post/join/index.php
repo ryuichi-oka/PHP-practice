@@ -51,6 +51,11 @@
     $_POST = $_SESSION['join'];
     $error['rewrite'] = true;
   }
+
+  // htmlspecialcharsのショートカット
+  function h($value) {
+    return htmlspecialchars($value, ENT_QUOTES);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -74,14 +79,14 @@
       <dl>
         <dt>ニックネーム<span class="required">必須</span></dt>
         <dd>
-          <input type="text" name="name" size="35" maxlength="255" value="<?php echo htmlspecialchars($_POST['name'], ENT_QUOTES); ?>">
+          <input type="text" name="name" size="35" maxlength="255" value="<?php echo h($_POST['name']); ?>">
           <?php if ($error['name'] == 'blank'): ?>
             <p class="error">*ニックネームを入力してください</p>
           <?php endif; ?>
         </dd>
         <dt>メールアドレス<span class="required">必須</span></dt>
         <dd>
-          <input type="text" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars($_POST['email'], ENT_QUOTES); ?>">
+          <input type="text" name="email" size="35" maxlength="255" value="<?php echo h($_POST['email']); ?>">
           <?php if ($error['email'] == 'blank'): ?>
             <p class="error">*メールアドレスを入力してください</p>
           <?php endif; ?>
@@ -91,7 +96,7 @@
         </dd>
         <dt>パスワード<span class="required">必須</span></dt>
         <dd>
-          <input type="password" name="password" size="10" maxlength="20" value="<?php echo htmlspecialchars($_POST['password'], ENT_QUOTES); ?>">
+          <input type="password" name="password" size="10" maxlength="20" value="<?php echo h($_POST['password']); ?>">
           <?php if ($error['password'] == 'blank'): ?>
             <p class="error">*パスワードを入力してください</p>
           <?php endif; ?>
